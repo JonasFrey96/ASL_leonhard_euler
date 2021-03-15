@@ -1,0 +1,33 @@
+---
+
+
+- name: Schedule Experiments
+  hosts: euler
+  vars:
+    - project_dir: "{{ ansible_env.HOME }}/"
+    # - ansible_ssh_private_key_file: "/home/jonfrey/.ssh/id_rsa"
+    # - ansible_ssh_user: jonfrey
+  tasks:
+    - name: Sync
+      synchronize: 
+        src: /home/jonfrey/ASL_leonhard_euler 
+        dest: "{{ project_dir }}"
+      # ansible.builtin.copy:
+      #   src: /home/jonfrey/ASL_leonhard_euler
+      #   dest: 
+
+    - name: Load experiments
+      include_vars:
+        file: /home/jonfrey/ASL_leonhard_euler/ansible/experiments.yml
+        name: experiments
+    
+    - name: Schdule all experiments
+      shell: >
+          bsub -n 1 -W 0:10 -R "rusage[mem=5000,ngpus_excl_p=2]" -R "select[gpu_mtotal0>=10000]" -R "rusage[scratch=1000]" $HOME/ASL_leonhard_euler/scripts/submit.sh --exp={{ item.exp }}
+      loop: "{{ experiments.jobs }}"
+
+    # # - name: Submit job   
+    # #   shell: >
+    # #     $HOME/track_this/scripts/ansible_auto/submit.sh
+    # #     --exp={{ item.exp }}
+    # #     --env=$HOME/track_this/yaml/env/env_leonhard.yml

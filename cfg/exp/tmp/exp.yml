@@ -1,0 +1,6 @@
+name: /home/jonfrey/results/2021-03-14T15:30:39_test
+timestamp: true
+trainer:
+  max_epochs: 10
+  accelerator: ddp
+  gpus: -1

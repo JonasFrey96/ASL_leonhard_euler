@@ -1,0 +1,7 @@
+name: test
+timestamp: True
+
+trainer:
+  max_epochs: 10
+  accelerator: ddp
+  gpus: -1
