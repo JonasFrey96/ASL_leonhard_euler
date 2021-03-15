@@ -469,7 +469,9 @@ Loads the `ansible/experiments.yml` where paths to experiment files are listed.
 Each of the entries in the `jobs` list will be handled seperate.
 We will loop over the jobs list in the next command.
 4. Scheduling:  
-Schedule the job with the bash command. Set the correct exp-file-path for each experiment.
+Schedule the job with the bash command. Sets the correct exp-file-path for each experiment.
+The `scripts/submit.sh` file loads the correct module. And starts the `main.py` with the template conda environment.
+the arguments that are passed to the script (`--exp=`) will be passed to the main.py file.
 With the loop command ansible knows it is supposed to loop over the list.  
 `loop: "{{ experiments.jobs }}"`
 

@@ -1,3 +1,2 @@
 jobs:
-- exp: /home/jonfrey/ASL_leonhard_euler/cfg/exp/exp.yml
-- exp: /home/jonfrey/ASL_leonhard_euler/cfg/exp/exp.yml
+- exp: cfg/exp/exp.yml

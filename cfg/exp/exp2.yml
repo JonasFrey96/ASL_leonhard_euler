@@ -1,7 +1,7 @@
-name: test
+name: test_2
 timestamp: True
 
 trainer:
-  max_epochs: 1000
+  max_epochs: 10
   accelerator: ddp
   gpus: -1

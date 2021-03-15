@@ -8,4 +8,4 @@ source ~/.bashrc
 # Navigate to working directoy
 cd $HOME/ASL_leonhard_euler
 # Executing the script
-/cluster/home/jonfrey/miniconda3/envs/track4/bin/python main.py $@
+/cluster/home/jonfrey/miniconda3/envs/py38/bin/python main.py $@

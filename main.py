@@ -90,4 +90,3 @@ if __name__ == '__main__':
     default_root_dir = model_path
   )
   trainer.fit(model, train_data, val_data)
-  trainer.test(test_dataloaders=test_data)
