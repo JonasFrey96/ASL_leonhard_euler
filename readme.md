@@ -1,47 +1,47 @@
 # Leonhard and Euler Guide
 
 - [Leonhard and Euler Guide](#leonhard-and-euler-guide)
-  - [Preliminary:](#preliminary)
-    - [Resources:](#resources)
-    - [Connecting to the cluster:](#connecting-to-the-cluster)
-  - [Modules:](#modules)
-  - [Python:](#python)
-    - [Using the pre-compiled binaries:](#using-the-pre-compiled-binaries)
-    - [Setup Miniconda:](#setup-miniconda)
-    - [Creating Conda Environment:](#creating-conda-environment)
-    - [Test your Python Installation:](#test-your-python-installation)
-  - [Using Jupyter Notebook for Visualizing Results:](#using-jupyter-notebook-for-visualizing-results)
-  - [Storing Data:](#storing-data)
-    - [General Procedure:](#general-procedure)
-    - [Implementation Commands:](#implementation-commands)
-      - [**Taring** a folder without compression:](#taring-a-folder-without-compression)
-      - [**Copying** a **folder from local computer** to the cluster:](#copying-a-folder-from-local-computer-to-the-cluster)
+  - [Preliminary](#preliminary)
+    - [Resources](#resources)
+    - [Connecting to the cluster](#connecting-to-the-cluster)
+  - [Modules](#modules)
+  - [Python](#python)
+    - [Using the pre-compiled binaries](#using-the-pre-compiled-binaries)
+    - [Setup Miniconda](#setup-miniconda)
+    - [Creating Conda Environment](#creating-conda-environment)
+    - [Test your Python Installation](#test-your-python-installation)
+  - [Using Jupyter Notebook for Visualizing Results](#using-jupyter-notebook-for-visualizing-results)
+  - [Storing Data](#storing-data)
+    - [General Procedure](#general-procedure)
+    - [Implementation Commands](#implementation-commands)
+      - [**Taring** a folder without compression](#taring-a-folder-without-compression)
+      - [**Copying** a **folder from local computer** to the cluster](#copying-a-folder-from-local-computer-to-the-cluster)
       - [**Copying** a **folder** **from cluster** to yor local computer](#copying-a-folder-from-cluster-to-yor-local-computer)
-      - [**Untaring** the tar file to the local storage of a node:](#untaring-the-tar-file-to-the-local-storage-of-a-node)
+      - [**Untaring** the tar file to the local storage of a node](#untaring-the-tar-file-to-the-local-storage-of-a-node)
       - [Accessing locale scratch directory in python](#accessing-locale-scratch-directory-in-python)
     - [Performance](#performance)
-  - [Scheduling Jobs:](#scheduling-jobs)
+  - [Scheduling Jobs](#scheduling-jobs)
     - [Interactive jobs](#interactive-jobs)
-    - [Monitoring Jobs:](#monitoring-jobs)
-    - [Scheduling Python-Job Manual:](#scheduling-python-job-manual)
-    - [Python Debugging Tipps:](#python-debugging-tipps)
-    - [Template Env:](#template-env)
+    - [Monitoring Jobs](#monitoring-jobs)
+    - [Scheduling Python-Job Manual](#scheduling-python-job-manual)
+    - [Python Debugging Tipps](#python-debugging-tipps)
+    - [Template Environment](#template-environment)
   - [Template Project Overview](#template-project-overview)
-  - [Setting up Environment Variables on the cluster:](#setting-up-environment-variables-on-the-cluster)
-  - [Using Ansible:](#using-ansible)
-    - [Installation:](#installation)
+  - [Setting up Environment Variables on the cluster](#setting-up-environment-variables-on-the-cluster)
+  - [Using Ansible](#using-ansible)
+    - [Installation](#installation)
     - [Configure](#configure)
     - [Testing the settings](#testing-the-settings)
     - [Scheduling Jobs Using Playbooks](#scheduling-jobs-using-playbooks)
 
-## Preliminary:
+## Preliminary
 
-### Resources:
+### Resources
 Read the Leohard/Euler cluster guides:
 [Getting_started_with_clusters](https://scicomp.ethz.ch/wiki/Getting_started_with_clusters)
 
 
-### Connecting to the cluster:
+### Connecting to the cluster
 For this you can follow the guide on the official cluster web-side which shows you how to generate and copy your local ssh key to the cluster.
 
 Steps in short:
@@ -57,7 +57,7 @@ Here we assume your created your ssh key at '~/.ssh/id_rsa.pub' on your locale m
 'ssh username@login.leonhard.ethz.ch'
 
 
-## Modules:
+## Modules
 When you connect to the cluster you connect to a login node.
 There exists a variety of modules pre-installed. 
 
@@ -82,8 +82,8 @@ module load eth_proxy
 ```
 
 
-## Python:
-### Using the pre-compiled binaries:
+## Python
+### Using the pre-compiled binaries
 You can take a look into the provided pre-compiled python bianaries here:
 https://scicomp.ethz.ch/wiki/Python_on_Euler
 
@@ -93,7 +93,7 @@ As a preliminary the scicomp wesite is often not up-to-date!
 In general we recommend setting up miniconda to mange your python environment.
 This allows to fully match the cluster and your locale setup.
 
-### Setup Miniconda:
+### Setup Miniconda
 Using anaconda to setup a custom python environments.
 (https://docs.conda.io/en/latest/miniconda.html)
 
@@ -119,7 +119,7 @@ source ~/.bashrc
 You should now see the currently loaded conda environments in brackets before your username. `(base) [username@login-noden ~]$`
 
 
-### Creating Conda Environment:
+### Creating Conda Environment
 Follow this guide on how to setup a new environment.
 When using GPUs make sure to match the CUDA Version.
 You can load different CUDA-Versions with module load. 
@@ -144,7 +144,7 @@ conda install pytorch==1.7.1  \
     cudatoolkit=11.0 -c pytorch
 ```
 
-### Test your Python Installation:
+### Test your Python Installation
 1. At first check your python path:
 Command:
 ```bash
@@ -172,12 +172,12 @@ Exit the shell with `exit()`
 
 
 
-## Using Jupyter Notebook for Visualizing Results:
+## Using Jupyter Notebook for Visualizing Results
 [Jupyter_on_Euler_and_Leonhard_Open](https://scicomp.ethz.ch/wiki/Jupyter_on_Euler_and_Leonhard_Open)
 
 
-## Storing Data:
-### General Procedure:
+## Storing Data
+### General Procedure
 Its important to manage your data storage correctly on the cluster.
 All large datasets should be stored under the `/cluster/work/riner` folder.  
 Also if your experiment results are large store them under the `/cluster/work/riner` aswell.
@@ -191,15 +191,15 @@ Its important to not store small files. When you need to train your model on a l
 If you dont follow this procedure and try to access a lot of small files on a network storage (/cluster/work/riner) you will slow down the network and your bandwidth will be massively reduced when you hit a certain file number limit.
 
 
-### Implementation Commands:
+### Implementation Commands
 
-####  **Taring** a folder without compression:
+#### **Taring** a folder without compression
 ```
 cd directory/containing/datasets
 tar -cvf dataset.tar dataset_folder
 ```
 
-#### **Copying** a **folder from local computer** to the cluster:  
+#### **Copying** a **folder from local computer** to the cluster
 Open a shell on your local computer
 ```
 scp -r ./path/to/local_folder username@login.leonhard.ethz.ch:/cluster/work/riner/some_folder
@@ -209,7 +209,7 @@ Oopen a shell on your local computer
 ```
 scp -r username@login.leonhard.ethz.ch:/cluster/work/riner/results ./path/to/local_results 
 ```
-#### **Untaring** the tar file to the local storage of a node:
+#### **Untaring** the tar file to the local storage of a node
 ```
 tar -xvf /cluster/work/riner/datasets.tar -C $TMPDIR
 ```
@@ -230,7 +230,7 @@ HDF5 files are also handy to use.
 If your dataset is small you can consider to load all files into the RAM given that you can request huge amount of RAM.  
 
 
-## Scheduling Jobs:
+## Scheduling Jobs
 Read the **Using the batch system** section. [Getting_started_with_clusters](https://scicomp.ethz.ch/wiki/Getting_started_with_clusters)
 
 ### Interactive jobs
@@ -249,7 +249,7 @@ This is especially useful for debugging. If your code crashes it might happen th
 If you know a workaround for this freezing problem I please share it!
 
 
-### Monitoring Jobs:
+### Monitoring Jobs
 Jo can see the runing Jobs with `bjobs` or `bbjobs` for more details.
 
 Jo can use the JOB-IDS to stop or peek the job.
@@ -265,7 +265,7 @@ bjob_connect JOB-ID
 ```
 You will see in brackets how the node changes from a login node to the execution node.
 
-### Scheduling Python-Job Manual:
+### Scheduling Python-Job Manual
 
 To schedule a python job we will create shell-script `submit.sh`
 Dont forget to set the correct permissions for exectution:
@@ -301,7 +301,7 @@ if __name__ == "__main__":
 ```
 
 
-### Python Debugging Tipps:
+### Python Debugging Tipps
 When using interactive bash sessions and you would like to break the program using Ctrl-C without freezing the terminal it helps to explicitly catch the signal.  
 By adding the following to the main script:
 ```
@@ -316,7 +316,7 @@ signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 ```
 
-### Template Env:
+### Template Environment
 Tested on Leonhard and Euler.  
 Machine learning and vision tasks.  
 Python 3.8.5 & GCC/6.3.0  
@@ -354,7 +354,7 @@ MONITORING:
 
 ## Template Project Overview
 
-## Setting up Environment Variables on the cluster:
+## Setting up Environment Variables on the cluster
 Append the following lins to the end of your ~/.bashrc file.
 vi ~/.bashrc
 
@@ -366,9 +366,9 @@ Specify your neptune.ai key for debugging. (only necesarray if you want to use n
 Specify the name of the cluster. This allows later to access this variable from your python script. Therfore your able to keep track on which cluster your on. Also this variable will be used to load the correct environment yaml file with the same name `/home/jonfrey/ASL_leonhard_euler/cfg/env/euler.yml` where you are able to specify cluster specific paths and settings.
 This allows to easly move between your workstation and cluster.
 
-## Using Ansible:
+## Using Ansible
 
-### Installation:
+### Installation
 Follow the installing ansible on Ubuntu guide. 
 
 (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
