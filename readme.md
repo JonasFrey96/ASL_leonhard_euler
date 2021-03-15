@@ -514,7 +514,8 @@ JOBID      USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TI
 
 ```
 TODO:
-- Workflow diagram
+- git clone instructions and repository overview
+- Workflow diagram ansible
 - Add my paramiko script
 - Extend ansible to use -o correctly
 ```
