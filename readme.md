@@ -1,4 +1,8 @@
 # Leonhard and Euler Guide
+TODO:
+- Workflow diagram
+- Add my paramiko script
+- Extend ansible to use -o correctly
 
 - [Leonhard and Euler Guide](#leonhard-and-euler-guide)
   - [Preliminary](#preliminary)
