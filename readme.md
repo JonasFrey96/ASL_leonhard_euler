@@ -1,8 +1,4 @@
 # Leonhard and Euler Guide
-TODO:
-- Workflow diagram
-- Add my paramiko script
-- Extend ansible to use -o correctly
 
 - [Leonhard and Euler Guide](#leonhard-and-euler-guide)
   - [Preliminary](#preliminary)
@@ -513,4 +509,12 @@ euler.ethz.ch              : ok=4    changed=2    unreachable=0    failed=0    s
 JOBID      USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
 165381072  jonfrey PEND  gpu.4h     eu-login-21             *p/exp.yml Mar 15 07:00
 165381081  jonfrey PEND  gpu.4h     eu-login-21             *p/exp.yml Mar 15 07:00
+```
+
+
+```
+TODO:
+- Workflow diagram
+- Add my paramiko script
+- Extend ansible to use -o correctly
 ```
