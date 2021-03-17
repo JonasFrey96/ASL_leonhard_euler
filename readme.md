@@ -36,6 +36,20 @@
 
 ## Preliminary
 
+If you feel like you have found a nice tool or trick to help other people using the cluster feel free to open and issue!  
+
+If you would like to contribute just feel free to mail me: jonfrey@ethz.ch  
+Feel free to give the repository are star if it helped you!  
+  
+What is coming: 
+- Example Project Tensorflow
+- Example Project PyTorch
+- Example Project PyTorch lightning
+- Nepune.ai Logging
+- Dataset Examples
+
+This repository is under construction.  
+
 ### Resources
 Read the Leohard/Euler cluster guides:
 [Getting_started_with_clusters](https://scicomp.ethz.ch/wiki/Getting_started_with_clusters)
@@ -518,4 +532,6 @@ TODO:
 - Workflow diagram ansible
 - Add my paramiko script
 - Extend ansible to use -o correctly
+- neptuneai
+
 ```
