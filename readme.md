@@ -56,6 +56,8 @@ Read the Leohard/Euler cluster guides:
 
 
 ### Connecting to the cluster
+![Cluster Overview](https://github.com/JonasFrey96/ASL_leonhard_euler/tree/master/docs/cluster_web.jpeg)
+
 For this you can follow the guide on the official cluster web-side which shows you how to generate and copy your local ssh key to the cluster.
 
 Steps in short:
@@ -78,12 +80,18 @@ There exists a variety of modules pre-installed.
 (https://scicomp.ethz.ch/wiki/Leonhard_applications_and_libraries)
 
 
+At first make sure to use the new software stack with the following command:
+```
+env2lmod
+```
+
+
 You can list the currently loaded modules with:
 ```
 module list
 ```
 
-When you want to develop something in Python you can either use precompiled binaries by loading the correct python module
+When you want to develop something in Python you can either use pre-compiled binaries by loading the correct python module
 ```
 module load gcc/6.3.0 python_gpu/3.7.4 cuda/10.1.243
 module load gcc/6.3.0 python_gpu/3.8.5 cuda/11.0.3
@@ -98,11 +106,8 @@ module load eth_proxy
 
 ## Python
 ### Using the pre-compiled binaries
-You can take a look into the provided pre-compiled python bianaries here:
+You can take a look into the provided pre-compiled python binaries here:
 https://scicomp.ethz.ch/wiki/Python_on_Euler
-
-
-As a preliminary the scicomp wesite is often not up-to-date!
 
 In general we recommend setting up miniconda to mange your python environment.
 This allows to fully match the cluster and your locale setup.
