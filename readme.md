@@ -56,7 +56,8 @@ Read the Leohard/Euler cluster guides:
 
 
 ### Connecting to the cluster
-![Cluster Overview](https://github.com/JonasFrey96/ASL_leonhard_euler/tree/master/docs/cluster_web.jpeg)
+![Cluster Overview](https://github.com/JonasFrey96/ASL_leonhard_euler/blob/master/docs/cluster_web.jpeg?raw=true)
+
 
 For this you can follow the guide on the official cluster web-side which shows you how to generate and copy your local ssh key to the cluster.
 
