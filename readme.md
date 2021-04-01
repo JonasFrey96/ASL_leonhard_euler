@@ -122,9 +122,9 @@ To install miniconda:
 2. Navigate to $HOME 
 3. Run the following:
 ```
-cd ~ && wget https://repo.anaconda.com/miniconda/
-chmod +x ./Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh 
+cd ~ && wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh
+chmod +x . Miniconda3-py38_4.9.2-Linux-x86_64.sh
+./Miniconda3-py38_4.9.2-Linux-x86_64.sh
 ```
 
 In gerneral:
