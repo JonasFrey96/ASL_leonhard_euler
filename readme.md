@@ -343,7 +343,7 @@ Python 3.8.5 & GCC/6.3.0
 
 Install:
 ```
-conda env create -f .conda/py38.yml
+conda env create -f ./conda/py38.yml
 ```
 
 FRAMEWORKS:
