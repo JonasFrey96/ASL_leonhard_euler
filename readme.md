@@ -1,45 +1,52 @@
+---
+layout: post
+title: Cluster Computing
+---
+<img align="right" src="{{ site.baseurl }}/images/procreator/symbol.jpg" height="75"/>
+
+You will learn everything to get started with cluster computing: 
 # Leonhard and Euler Guide
 
 - [Leonhard and Euler Guide](#leonhard-and-euler-guide)
-  - [Preliminary](#preliminary)
-    - [Resources](#resources)
-    - [Connecting to the cluster](#connecting-to-the-cluster)
-  - [Modules](#modules)
-  - [Python](#python)
-    - [Using the pre-compiled binaries](#using-the-pre-compiled-binaries)
-    - [Setup Miniconda](#setup-miniconda)
-    - [Creating Conda Environment](#creating-conda-environment)
-    - [Test your Python Installation](#test-your-python-installation)
-  - [Using Jupyter Notebook for Visualizing Results](#using-jupyter-notebook-for-visualizing-results)
-  - [Storing Data](#storing-data)
-    - [General Procedure](#general-procedure)
-    - [Implementation Commands](#implementation-commands)
-      - [**Taring** a folder without compression](#taring-a-folder-without-compression)
-      - [**Copying** a **folder from local computer** to the cluster](#copying-a-folder-from-local-computer-to-the-cluster)
-      - [**Copying** a **folder** **from cluster** to yor local computer](#copying-a-folder-from-cluster-to-yor-local-computer)
-      - [**Untaring** the tar file to the local storage of a node](#untaring-the-tar-file-to-the-local-storage-of-a-node)
-      - [Accessing locale scratch directory in python](#accessing-locale-scratch-directory-in-python)
-    - [Performance](#performance)
-  - [Scheduling Jobs](#scheduling-jobs)
-    - [Interactive jobs](#interactive-jobs)
-    - [Monitoring Jobs](#monitoring-jobs)
-    - [Scheduling Python-Job Manual](#scheduling-python-job-manual)
-    - [Python Debugging Tipps](#python-debugging-tipps)
-    - [Template Environment](#template-environment)
-  - [Template Project Overview](#template-project-overview)
-  - [Setting up Environment Variables on the cluster](#setting-up-environment-variables-on-the-cluster)
-  - [Using Ansible](#using-ansible)
-    - [Installation](#installation)
-    - [Configure](#configure)
-    - [Testing the settings](#testing-the-settings)
-    - [Scheduling Jobs Using Playbooks](#scheduling-jobs-using-playbooks)
+	- [Preliminary](#preliminary)
+		- [Resources](#resources)
+		- [Connecting to the cluster](#connecting-to-the-cluster)
+	- [Modules](#modules)
+	- [Python](#python)
+		- [Using the pre-compiled binaries](#using-the-pre-compiled-binaries)
+		- [Setup Miniconda](#setup-miniconda)
+		- [Creating Conda Environment](#creating-conda-environment)
+		- [Test your Python Installation](#test-your-python-installation)
+	- [Using Jupyter Notebook for Visualizing Results](#using-jupyter-notebook-for-visualizing-results)
+	- [Storing Data](#storing-data)
+		- [General Procedure](#general-procedure)
+		- [Implementation Commands](#implementation-commands)
+			- [**Taring** a folder without compression](#taring-a-folder-without-compression)
+			- [**Copying** a **folder from local computer** to the cluster](#copying-a-folder-from-local-computer-to-the-cluster)
+			- [**Copying** a **folder** **from cluster** to yor local computer](#copying-a-folder-from-cluster-to-yor-local-computer)
+			- [**Untaring** the tar file to the local storage of a node](#untaring-the-tar-file-to-the-local-storage-of-a-node)
+			- [Accessing locale scratch directory in python](#accessing-locale-scratch-directory-in-python)
+		- [Performance](#performance)
+	- [Scheduling Jobs](#scheduling-jobs)
+		- [Interactive jobs](#interactive-jobs)
+		- [Monitoring Jobs](#monitoring-jobs)
+		- [Scheduling Python-Job Manual](#scheduling-python-job-manual)
+		- [Python Debugging Tipps](#python-debugging-tipps)
+		- [Template Environment](#template-environment)
+	- [Template Project Overview](#template-project-overview)
+	- [Setting up Environment Variables on the cluster](#setting-up-environment-variables-on-the-cluster)
+	- [Using Ansible](#using-ansible)
+		- [Installation](#installation)
+		- [Configure](#configure)
+		- [Testing the settings](#testing-the-settings)
+		- [Scheduling Jobs Using Playbooks](#scheduling-jobs-using-playbooks)
 
 ## Preliminary
-
+This is the Readme copied from [](https://github.com/JonasFrey96/ASL_leonhard_euler)
 If you feel like you have found a nice tool or trick to help other people using the cluster feel free to open and issue!  
 
 If you would like to contribute just feel free to mail me: jonfrey@ethz.ch  
-Feel free to give the repository are star if it helped you!  
+Feel free to give the repository a **star** if it helps you!  
   
 What is coming: 
 - Example Project Tensorflow
@@ -51,7 +58,7 @@ What is coming:
 This repository is under construction.  
 
 ### Resources
-Read the Leohard/Euler cluster guides:
+Read the Leonhard/Euler cluster guides:
 [Getting_started_with_clusters](https://scicomp.ethz.ch/wiki/Getting_started_with_clusters)
 
 
@@ -68,7 +75,7 @@ Steps in short:
 ```
 cat ~/.ssh/id_rsa.pub | ssh username@login.leonhard.ethz.ch "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >>  ~/.ssh/authorized_keys"
 ```
-Here we assume your created your ssh key at '~/.ssh/id_rsa.pub' on your locale machine. 
+Here we assume you already created your ssh key at '~/.ssh/id_rsa.pub' on your locale machine. 
 
 4. Try to connect.
 'ssh username@login.leonhard.ethz.ch'
@@ -110,11 +117,11 @@ module load eth_proxy
 You can take a look into the provided pre-compiled python binaries here:
 https://scicomp.ethz.ch/wiki/Python_on_Euler
 
-In general we recommend setting up miniconda to mange your python environment.
-This allows to fully match the cluster and your locale setup.
+In general we recommend setting up miniconda to manage your python environment.
+This allows you to fully match the cluster and your locale setup.
 
 ### Setup Miniconda
-Using anaconda to setup a custom python environments.
+Using anaconda to setup a custom python environment.
 (https://docs.conda.io/en/latest/miniconda.html)
 
 To install miniconda:
@@ -127,7 +134,7 @@ chmod +x . Miniconda3-py38_4.9.2-Linux-x86_64.sh
 ./Miniconda3-py38_4.9.2-Linux-x86_64.sh
 ```
 
-In gerneral:
+In general:
 
 It is important to install the conda environment (which will contain a lot of small files), to your $HOME folder (/cluster/home/username/miniconda3). This directory will always before running a job be copied to the compute node. Your home folder is quite small < 15GB but perfect for storing your code and the python environments.
 
@@ -135,7 +142,7 @@ It is important to install the conda environment (which will contain a lot of sm
 ```
 source ~/.bashrc
 ```
-5. Verfy your installation:
+5. Verify your installation:
 You should now see the currently loaded conda environments in brackets before your username. `(base) [username@login-noden ~]$`
 
 
@@ -144,19 +151,19 @@ Follow this guide on how to setup a new environment.
 When using GPUs make sure to match the CUDA Version.
 You can load different CUDA-Versions with module load. 
 Also be aware of the GCC Version.
-We recommended to use GCC version 6.3.0 and CUDA 11.0.
+We recommend GCC version 6.3.0 and CUDA 11.0.
 
 
 [Guide how to ,manage conda environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-Exectute the following command to create your Python environment named myenv (you can change the name):
+Execute the following command to create your Python environment named myenv (you can change the name):
 ```
 conda create -n myenv python=3.8.5
 conda activate myenv
 ```
 
 Install some packages:  
-Example PyTorch Installation (Here its important to match the cudatoolkit version!):
+Example PyTorch Installation (Here it's important to match the cudatoolkit version!):
 ```bash
 conda install pytorch==1.7.1  \ 
     torchvision==0.8.2 \
@@ -198,17 +205,17 @@ Exit the shell with `exit()`
 
 ## Storing Data
 ### General Procedure
-Its important to manage your data storage correctly on the cluster.
+It's important to manage your data storage correctly on the cluster.
 All large datasets should be stored under the `/cluster/work/riner` folder.  
-Also if your experiment results are large store them under the `/cluster/work/riner` aswell.
+Also if your experiment results are large store them under the `/cluster/work/riner` as well.
 
-Its important to not store small files. When you need to train your model on a large dataset the workflow is the following.
+It's important to not store small files. When you need to train your model on a large dataset the workflow is the following.
 1. Tar the dataset folder without compression!
 2. Schedule the job and request SCRATCH storage (will be discussed in the job-section)
-3. Untar the dataset to the SCRATCH pariton of the compute node ($TMPDIR). The SCRATCH partiton is mounted under $TMPDIR
-4. Now you can access the small files individually very fast given that they are on the SSD directly on the compute node and no network transfer is needed.
+3. Untar the dataset to the SCRATCH partition of the compute node ($TMPDIR). The SCRATCH partition is mounted under $TMPDIR
+4. Now you can access the small files individually very fast given that they are on the SSD directly on the compute-node and no network transfer is needed.
 
-If you dont follow this procedure and try to access a lot of small files on a network storage (/cluster/work/riner) you will slow down the network and your bandwidth will be massively reduced when you hit a certain file number limit.
+If you don't follow this procedure and try to access a lot of small files on a network storage (/cluster/work/riner) you will slow down the network and your bandwidth will be massively reduced when you hit a certain file number limit.
 
 
 ### Implementation Commands
@@ -224,8 +231,8 @@ Open a shell on your local computer
 ```
 scp -r ./path/to/local_folder username@login.leonhard.ethz.ch:/cluster/work/riner/some_folder
 ```
-#### **Copying** a **folder** **from cluster** to yor local computer
-Oopen a shell on your local computer
+#### **Copying** a **folder** **from cluster** to your local computer
+Open a shell on your local computer
 ```
 scp -r username@login.leonhard.ethz.ch:/cluster/work/riner/results ./path/to/local_results 
 ```
@@ -245,9 +252,9 @@ os.system(f'tar \cluster\work\riner\yourtarfile -C {tmpdir}')
 ```
 
 ### Performance
-Dont use a compression if you already have compressed files such as images stored as jpgs or pngs.  
+Don't use a compression if you already have compressed files such as images stored as jpgs or pngs.  
 HDF5 files are also handy to use.  
-If your dataset is small you can consider to load all files into the RAM given that you can request huge amount of RAM.  
+If your dataset is small you can consider loading all files into the RAM given that you can request a huge amount of RAM.  
 
 
 ## Scheduling Jobs
@@ -270,12 +277,12 @@ If you know a workaround for this freezing problem I please share it!
 
 
 ### Monitoring Jobs
-Jo can see the runing Jobs with `bjobs` or `bbjobs` for more details.
+Jo can see the running Jobs with `bjobs` or `bbjobs` for more details.
 
 Jo can use the JOB-IDS to stop or peek the job.
 ```bash 
 bkill JOB-ID           # Sends stop signal to the selected job
-bkill 0                # Sends stop signal to ALL-jobs.
+bkill 0                # Sends stop signals to ALL-jobs.
 bpeek JOB-ID           # Prints STD OUT of the selected job to the terminal.
 ```
 
@@ -288,11 +295,11 @@ You will see in brackets how the node changes from a login node to the execution
 ### Scheduling Python-Job Manual
 
 To schedule a python job we will create shell-script `submit.sh`
-Dont forget to set the correct permissions for exectution:
+Don't forget to set the correct permissions for execution:
 `chmod +x submit.sh`
 
 ```sh
-# Always reload all-modules before execution for consitency.
+# Always reload all-modules before execution for consistency.
 module list &> /dev/null || source /cluster/apps/modules/init/bash
 module purge
 module load legacy new gcc/6.3.0 hdf5 eth_proxy
@@ -322,7 +329,7 @@ if __name__ == "__main__":
 
 
 ### Python Debugging Tipps
-When using interactive bash sessions and you would like to break the program using Ctrl-C without freezing the terminal it helps to explicitly catch the signal.  
+When using interactive bash sessions, you would like to break the program using Ctrl-C without freezing the terminal; it helps to explicitly catch the signal.  
 By adding the following to the main script:
 ```
 import signal
@@ -375,16 +382,16 @@ MONITORING:
 ## Template Project Overview
 
 ## Setting up Environment Variables on the cluster
-Append the following lins to the end of your ~/.bashrc file.
+Append the following lines to the end of your ~/.bashrc file.
 vi ~/.bashrc
 
 ```
 export NEPTUNE_API_TOKEN="""torken"""
 export ENV_WORKSTATION_NAME="""leonhard"""
 ```
-Specify your neptune.ai key for debugging. (only necesarray if you want to use neptune)  
-Specify the name of the cluster. This allows later to access this variable from your python script. Therfore your able to keep track on which cluster your on. Also this variable will be used to load the correct environment yaml file with the same name `/home/jonfrey/ASL_leonhard_euler/cfg/env/euler.yml` where you are able to specify cluster specific paths and settings.
-This allows to easly move between your workstation and cluster.
+Specify your neptune.ai key for debugging. (only necessary if you want to use neptune)  
+Specify the name of the cluster. This allows later to access this variable from your python script. Therefore you're able to keep track on which cluster you're on. Also this variable will be used to load the correct environment yaml file with the same name `/home/jonfrey/ASL_leonhard_euler/cfg/env/euler.yml` where you are able to specify cluster specific paths and settings.
+This allows you to easily move between your workstation and cluster.
 
 ## Using Ansible
 
@@ -395,7 +402,7 @@ Follow the installing ansible on Ubuntu guide.
 
 ### Configure
 
-Configure ansible settings by modifiying the following files.
+Configure ansible settings by modifying the following files.
 1. ```sudo vi /etc/ansible/ansible.cfg```
 ```
 [defaults]
@@ -449,7 +456,7 @@ login.leonhard.ethz.ch | SUCCESS => {
 
 ###  Scheduling Jobs Using Playbooks
 
-At first habe a look into the offical documentation
+At first have a look into the official documentation
 (https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
 
 Example Playbook `(ansible/queue_jobs.yml)`:
@@ -470,7 +477,7 @@ Example Playbook `(ansible/queue_jobs.yml)`:
         file: /home/jonfrey/ASL_leonhard_euler/ansible/experiments.yml
         name: experiments
     
-    - name: Schdule all experiments
+    - name: Schedule all experiments
       shell: >
           bsub -n 1 -W 0:10 -R "rusage[mem=5000,ngpus_excl_p=2]" -R "select[gpu_mtotal0>=10000]" -R "rusage[scratch=1000]" $HOME/ASL_leonhard_euler/scripts/submit.sh --exp={{ item.exp }}
       loop: "{{ experiments.jobs }}"
@@ -479,14 +486,14 @@ Example Playbook `(ansible/queue_jobs.yml)`:
 Playbook Explanation:
 1. Specify the execution host:   
 `hosts: euler`  
-The available hosts can be found in the perviously setup `/etc/ansible/hosts` file
+The available hosts can be found in the previously setup `/etc/ansible/hosts` file
 2. Synchronize your local code with the cluster:  
 `synchronize`   
 You can modify the `dest` and `src` path as needed.  
 Also it's possible to use `rsync` instead here.  
 1. Load variables:    
 Loads the `ansible/experiments.yml` where paths to experiment files are listed.  
-Each of the entries in the `jobs` list will be handled seperate.
+Each of the entries in the `jobs` list will be handled separately.
 We will loop over the jobs list in the next command.
 4. Scheduling:  
 Schedule the job with the bash command. Sets the correct exp-file-path for each experiment.
@@ -516,7 +523,7 @@ changed: [euler.ethz.ch]
 TASK [Load experiments] *************************************************************************************
 ok: [euler.ethz.ch]
 
-TASK [Schdule all experiments] ******************************************************************************
+TASK [Schedule all experiments] ******************************************************************************
 changed: [euler.ethz.ch] => (item={u'exp': u'/home/jonfrey/ASL_leonhard_euler/cfg/exp/exp.yml'})
 changed: [euler.ethz.ch] => (item={u'exp': u'/home/jonfrey/ASL_leonhard_euler/cfg/exp/exp.yml'})
 
@@ -541,3 +548,4 @@ TODO:
 - neptuneai
 
 ```
+
