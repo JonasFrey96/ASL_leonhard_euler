@@ -1,10 +1,3 @@
----
-layout: post
-title: Cluster Computing
----
-<img align="right" src="{{ site.baseurl }}/images/procreator/symbol.jpg" height="75"/>
-
-You will learn everything to get started with cluster computing: 
 # Leonhard and Euler Guide
 
 - [Leonhard and Euler Guide](#leonhard-and-euler-guide)
